@@ -18,11 +18,9 @@ void AddItem::run(Database* db) {
     std::string name;
     std::cin >> name;
 
-    std::cout << "Enter path to item (\"/\" for root or \"/<container_id>/<container_id>\" for specific location)" << std::endl;
+    std::cout << "Enter path to item (\"/\" for root or \"/<container_id>/<container_id>/\" for specific location)" << std::endl;
     std::string path;
     std::cin >> path;
-
-    std::cout << path;
 
 
     db->addItem(name, id, path);

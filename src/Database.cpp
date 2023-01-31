@@ -65,7 +65,7 @@ void Database::addItem(std::string name, int id, std::string location) {
 
     nodeMap.emplace(id, node);
 
-    std::cout << "Added node " << id << " with name \"" << name << "\" and parent " << (parent == nullptr ? "/" : parent->name) << std::endl;
+    std::cout << "Added node " << id << " with name \"" << name << "\" and parent \"" << (parent == nullptr ? "/" : parent->name)  << "\"" << std::endl;
 }
 
 std::string Database::getPath(std::string name){
