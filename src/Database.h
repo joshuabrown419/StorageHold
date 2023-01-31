@@ -3,17 +3,19 @@
 
 #include <string>
 #include <map>
+#include <vector>
 
-struct Node {
-    Node* parent;
-    int id;
-    std::string name;
+class DBNode {
+    public:
+        DBNode* parent;
+        int id;
+        std::string name;
 };
 
 class Database {
     private:
         std::map<std::string, int> nameMap = std::map<std::string, int>();
-        std::map<int, struct Node*> nodeMap = std::map<int, struct Node*>();
+        std::map<int, struct DBNode*> nodeMap = std::map<int, struct DBNode*>();
 
         std::string location; 
     public: 
@@ -25,6 +27,8 @@ class Database {
 
         std::string getPath(std::string name);
         std::string getPath(int id);
+
+        std::vector<struct DBNode*> getAllNodes();
 };
 
 #endif
