@@ -10,27 +10,27 @@ SOURCES = $(shell find ./src/ -type f -name "*.$(SRCEXT)")
 OBJECTS = $(addprefix $(TARGET),$(notdir $(SOURCES:.cpp=.o)))
 
 build: $(TARGET) $(OBJECTS)
-        $(CC) $(CFLAGS) $(OBJECTS) -o $(EXE_FILE)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXE_FILE)
 
 run: $(DBFOLDER)
-        make build
-        ./$(EXE_FILE)
+	make build
+	./$(EXE_FILE)
 
 test: $(TARGET) main.cpp
-        $(CC) $(CFLAGS) main.cpp -o test
+	$(CC) $(CFLAGS) main.cpp -o test
 
 $(TARGET):
-        mkdir $(TARGET)
+	mkdir $(TARGET)
 
 $(DBFOLDER):
-        mkdir $(DBFOLDER)
+	mkdir $(DBFOLDER)
 
 $(TARGET)%.o: ./src/%.$(SRCEXT)
-        $(CC) $(CFLAGS) -c -o ./$@ $<
+	$(CC) $(CFLAGS) -c -o ./$@ $<
 
 tar:
-        tar -cvf $(TAR_NAME).tar Makefile *.cpp *.h *.hpp
+	tar -cvf $(TAR_NAME).tar Makefile *.cpp *.h *.hpp
 
 clean:
-        rm -r $(TARGET)
-        rm -f $(EXE_FILE)
+	rm -r $(TARGET)
+	rm -f $(EXE_FILE)
