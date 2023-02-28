@@ -10,7 +10,7 @@ SOURCES = $(shell find ./src/ -type f -name "*.$(SRCEXT)")
 OBJECTS = $(addprefix $(TARGET),$(notdir $(SOURCES:.cpp=.o)))
 
 build: $(TARGET) $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXE_FILE)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXE_FILE) -lpthread -lzmqpp -lzmq
 
 run: $(DBFOLDER)
 	make build

@@ -10,7 +10,7 @@ std::string DisplayAll::getName() {
 
 void DisplayAll::run(Database* db) {
     std::cout << std::endl << "Displaying all nodes and their path: " << std::endl;
-    for(struct DBNode* node : db->getAllNodes()) {
+    for(DBNode* node : db->getAllNodes()) {
         std::cout << db->getPath(node->id) << std::endl;
     }
 }

@@ -22,6 +22,11 @@ void AddItem::run(Database* db) {
     std::string path;
     std::cin >> path;
 
+    if (path.at(path.length() - 1) != '/'){
+        path.append("/");
+    }
+
 
     db->addItem(name, id, path);
+    db->writeData();
 }

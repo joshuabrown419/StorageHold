@@ -9,6 +9,8 @@
 int main () {
     Database* db = new Database("./db_folder/db.db");
     Command* commands[] = {(Command*) new GetPath(), (Command*) new AddItem(), (Command*) new DisplayAll()};
+
+    db->readData();
     
     int selection = 0;
     while(selection != 3) {
@@ -18,6 +20,7 @@ int main () {
         for(int i = 0; i < 3; i++) {
             std::cout << i << ": " << commands[i]->getName() << std::endl;
         }
+        
         std::cout << "3: Quit" << std::endl;
 
         std::cin >> selection;

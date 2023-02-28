@@ -1,0 +1,72 @@
+[
+ {
+  "directory": "/mnt/Common/code/CS361/StorageHold",
+  "arguments": [
+   "g++",
+   "-std=c++11",
+   "-fdiagnostics-color=always",
+   "-g",
+   "-c",
+   "-o",
+   "./target/main.o",
+   "src/main.cpp"
+  ],
+  "file": "src/main.cpp"
+ },
+ {
+  "directory": "/mnt/Common/code/CS361/StorageHold",
+  "arguments": [
+   "g++",
+   "-std=c++11",
+   "-fdiagnostics-color=always",
+   "-g",
+   "-c",
+   "-o",
+   "./target/Database.o",
+   "src/Database.cpp"
+  ],
+  "file": "src/Database.cpp"
+ },
+ {
+  "directory": "/mnt/Common/code/CS361/StorageHold",
+  "arguments": [
+   "g++",
+   "-std=c++11",
+   "-fdiagnostics-color=always",
+   "-g",
+   "-c",
+   "-o",
+   "./target/GetPath.o",
+   "src/GetPath.cpp"
+  ],
+  "file": "src/GetPath.cpp"
+ },
+ {
+  "directory": "/mnt/Common/code/CS361/StorageHold",
+  "arguments": [
+   "g++",
+   "-std=c++11",
+   "-fdiagnostics-color=always",
+   "-g",
+   "-c",
+   "-o",
+   "./target/AddItem.o",
+   "src/AddItem.cpp"
+  ],
+  "file": "src/AddItem.cpp"
+ },
+ {
+  "directory": "/mnt/Common/code/CS361/StorageHold",
+  "arguments": [
+   "g++",
+   "-std=c++11",
+   "-fdiagnostics-color=always",
+   "-g",
+   "-c",
+   "-o",
+   "./target/DisplayAll.o",
+   "src/DisplayAll.cpp"
+  ],
+  "file": "src/DisplayAll.cpp"
+ }
+]

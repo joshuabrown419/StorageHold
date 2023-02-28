@@ -7,8 +7,8 @@
 
 class DBNode {
     public:
-        DBNode* parent;
         int id;
+        int parent_id;
         std::string name;
 };
 
@@ -22,6 +22,7 @@ class Database {
         Database(std::string location);
 
         void writeData();
+        void readData();
         // Name and id should be unique, location should be in the form of "<container_id>/<container_id>"
         void addItem(std::string name, int id, std::string location);
 
