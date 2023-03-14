@@ -1,5 +1,6 @@
 #include "Database.h"
 #include <cstdio>
+#include <ostream>
 #include <string>
 #include <iostream>
 #include <algorithm>
@@ -89,8 +90,6 @@ void Database::addItem(std::string name, int id, std::string path) {
 
         if(token.length() == 0) continue;
 
-        std::cout << token << std::endl;
-
         if(isInt(token)) {
             if(nodeMap.count(std::atoi(token.c_str())) == 0){
                 std::cout << "container \"" << token << "\" does not exist" << std::endl;
@@ -114,8 +113,8 @@ void Database::addItem(std::string name, int id, std::string path) {
     node->parent_id = parent_id;
 
     nodeMap.emplace(id, node);
-
-    std::cout << "Added node " << id << " with name \"" << name << "\" and parent_id \"" << (parent_id)  << "\"" << std::endl;
+    std::cout << std::endl;
+    printItemInfo(id);
 }
 
 void Database::moveItem(int id, std::string& newPath) {
@@ -143,8 +142,6 @@ void Database::moveItem(int id, std::string& newPath) {
 
       if(token.length() == 0) continue;
 
-      std::cout << token << std::endl;
-
       if(isInt(token)) {
         if(nodeMap.count(std::atoi(token.c_str())) == 0){
           std::cout << "container \"" << token << "\" does not exist" << std::endl;
@@ -162,7 +159,21 @@ void Database::moveItem(int id, std::string& newPath) {
 
     nodeMap.at(id)->parent_id = parent_id;
 
-    std::printf("Node %d now has a path of: %s\n", id, getPath(id).c_str());
+    std::cout << std::endl;
+    printItemInfo(id);
+}
+
+void Database::printItemInfo(int id) {
+    if(nodeMap.count(id) == 0) {
+        std::printf("Node %d does not exist\n", id);
+    }
+
+    DBNode* node = nodeMap.at(id);
+
+    std::printf("Node %d, Name: %s, Path: %s\n",
+                node->id,
+                node->name.c_str(),
+                getPath(node->id).c_str());
 }
 
 std::string Database::getPath(std::string name){

@@ -25,5 +25,4 @@ void MoveItem::run(Database *db) {
 
     db->moveItem(id, newPath);
     db->writeData();
-
 }

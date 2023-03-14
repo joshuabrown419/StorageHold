@@ -11,5 +11,5 @@ void GetPath::run(Database* db) {
     std::cout << "ID of item to get path of: ";
     int id;
     std::cin >> id;
-    std::cout << db->getPath(id) << std::endl;
+    db->printItemInfo(id);
 }
