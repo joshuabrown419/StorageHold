@@ -10,6 +10,7 @@ class DBNode {
         int id;
         int parent_id;
         std::string name;
+        std::string* checkout = nullptr;
 };
 
 class Database {
@@ -26,7 +27,6 @@ class Database {
         // Name and id should be unique, location should be in the form of "<container_id>/<container_id>"
         void addItem(std::string name, int id, std::string location);
 
-
         void moveItem(int id, std::string& newPath);
 
         void printItemInfo(int id);
@@ -34,7 +34,11 @@ class Database {
         std::string getPath(std::string name);
         std::string getPath(int id);
 
-        std::vector<struct DBNode*> getAllNodes();
+        void checkout(int id, std::string name);
+
+        std::vector<DBNode*> getAllNodes();
+
+        ~Database();
 };
 
 #endif

@@ -170,6 +170,10 @@ void Database::printItemInfo(int id) {
 
     DBNode* node = nodeMap.at(id);
 
+    std::string checkout = (node->checkout == nullptr) ? "Not Checked Out" : ("Checked out by " + *node->checkout);
+    std::cout << checkout << std::endl;
+
+
     std::printf("Node %d, Name: %s, Path: %s\n",
                 node->id,
                 node->name.c_str(),
@@ -195,6 +199,22 @@ std::string Database::getPath(int id) {
     return getPath(nodeMap.at(id)->parent_id) + "/" + nodeMap.at(id)->name;
 }
 
+void Database::checkout(int id, std::string name) {
+    if(nodeMap.count(id) == 0) {
+        std::printf("Node %d does not exist\n", id);
+        return;
+    }
+
+    DBNode* node = nodeMap.at(id);
+    if(node->checkout != nullptr) {
+        std::printf("Node %d is already checked out by %s!\n", id, node->checkout->c_str());
+        return;
+    }
+
+    node->checkout = &name;
+    printItemInfo(id);
+}
+
 std::vector<struct DBNode*> Database::getAllNodes() {
     std::vector<struct DBNode*> nodes;
     for(std::map<int,struct DBNode*>::iterator it = nodeMap.begin(); it != nodeMap.end(); ++it) {
@@ -202,4 +222,11 @@ std::vector<struct DBNode*> Database::getAllNodes() {
     }
 
     return nodes;
+}
+
+Database::~Database() {
+    for(DBNode* node : getAllNodes()) {
+      if(node->checkout != nullptr) delete node->checkout;
+        delete node;
+    }
 }
