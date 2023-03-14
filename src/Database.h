@@ -26,6 +26,8 @@ class Database {
         // Name and id should be unique, location should be in the form of "<container_id>/<container_id>"
         void addItem(std::string name, int id, std::string location);
 
+        void moveItem(int id, std::string& newPath);
+
         std::string getPath(std::string name);
         std::string getPath(int id);
 

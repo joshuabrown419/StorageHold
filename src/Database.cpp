@@ -1,4 +1,5 @@
 #include "Database.h"
+#include <cstdio>
 #include <string>
 #include <iostream>
 #include <algorithm>
@@ -64,7 +65,7 @@ void Database::readData() {
     }
 }
 
-void Database::addItem(std::string name, int id, std::string location) {    
+void Database::addItem(std::string name, int id, std::string path) {
     size_t pos = 0;
     std::string token;
 
@@ -80,11 +81,11 @@ void Database::addItem(std::string name, int id, std::string location) {
         return;
     }
 
-    while ((pos = location.find("/")) != std::string::npos) {
-        if(location == "/") break;
+    while ((pos = path.find("/")) != std::string::npos) {
+        if(path == "/") break;
 
-        token = location.substr(0, pos);
-        location.erase(0, pos + 1);
+        token = path.substr(0, pos);
+        path.erase(0, pos + 1);
 
         if(token.length() == 0) continue;
 
@@ -115,6 +116,53 @@ void Database::addItem(std::string name, int id, std::string location) {
     nodeMap.emplace(id, node);
 
     std::cout << "Added node " << id << " with name \"" << name << "\" and parent_id \"" << (parent_id)  << "\"" << std::endl;
+}
+
+void Database::moveItem(int id, std::string& newPath) {
+    if(nodeMap.count(id) == 0) {
+        std::cout << "Node " << id << " does not exist" << std::endl;
+        return;
+    }
+
+    std::string nodePath = this->getPath(id);
+
+    if(newPath.find(nodePath) != std::string::npos) {
+        std::cout << "Cannot place an item inside of itself" << std::endl;
+    }
+
+    size_t pos = 0;
+    std::string token;
+
+    int parent_id = -1;
+
+    while ((pos = newPath.find("/")) != std::string::npos) {
+      if(newPath == "/") break;
+
+      token = newPath.substr(0, pos);
+      newPath.erase(0, pos + 1);
+
+      if(token.length() == 0) continue;
+
+      std::cout << token << std::endl;
+
+      if(isInt(token)) {
+        if(nodeMap.count(std::atoi(token.c_str())) == 0){
+          std::cout << "container \"" << token << "\" does not exist" << std::endl;
+          return;
+        }
+        parent_id = std::atoi(token.c_str());
+      } else {
+        if(nameMap.count(token) == 0){
+          std::cout << "container \"" << token << "\" does not exist" << std::endl;
+          return;
+        }
+        parent_id = nameMap.at(token);
+      }
+    }
+
+    nodeMap.at(id)->parent_id = parent_id;
+
+    std::printf("Node %d now has a path of: %s\n", id, getPath(id).c_str());
 }
 
 std::string Database::getPath(std::string name){

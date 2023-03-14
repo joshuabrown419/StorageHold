@@ -34,3 +34,4 @@ tar:
 clean:
 	rm -r $(TARGET)
 	rm -f $(EXE_FILE)
+	rm -f vgcore.*

@@ -68,5 +68,19 @@
    "src/DisplayAll.cpp"
   ],
   "file": "src/DisplayAll.cpp"
+ },
+ {
+  "directory": "/mnt/Common/code/CS361/StorageHold",
+  "arguments": [
+   "g++",
+   "-std=c++11",
+   "-fdiagnostics-color=always",
+   "-g",
+   "-c",
+   "-o",
+   "./target/MoveItem.o",
+   "src/MoveItem.cpp"
+  ],
+  "file": "src/MoveItem.cpp"
  }
 ]
