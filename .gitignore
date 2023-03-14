@@ -1,0 +1,6 @@
+.fleet/
+.cache/clangd/index/
+compile_commands.json
+vgcore.*
+storage_hold
+target/
